@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#174a35">
+<title>Юный спасатель — миссия 101</title>
+<style>
+:root{--green:#174a35;--green2:#26734d;--red:#c93632;--cream:#fffaf0;--ink:#17352a;--gold:#ffc857}
+*{box-sizing:border-box}
+body{margin:0;background:#f1f4ef;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(120deg,var(--green),#0f3025);color:white;padding:30px 18px 26px;text-align:center;position:relative;overflow:hidden}
+header:before,header:after{content:"";position:absolute;width:180px;height:180px;border:18px solid #ffffff12;border-radius:50%;top:-80px}
+header:before{left:-65px}header:after{right:-65px}
+.flag{height:8px;background:linear-gradient(to bottom,#c93632 0 50%,#fff 50% 58%,#26734d 58% 100%)}
+.eyebrow{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:#d5eadc;font-weight:800}
+h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.03;margin:12px 0 10px;font-weight:950;letter-spacing:-.04em}
+header p{max-width:590px;margin:0 auto;color:#e8f2e9}
+.wrap{max-width:760px;margin:22px auto;padding:0 14px 35px}
+.panel{background:white;border:1px solid #dbe5dc;border-radius:22px;padding:clamp(18px,4vw,30px);box-shadow:0 12px 32px #17352a0d}
+.pill{display:inline-flex;align-items:center;gap:7px;background:#e7f2e9;color:var(--green);padding:7px 12px;border-radius:999px;font-size:.82rem;font-weight:800}
+.intro h2{font-size:1.6rem;margin:14px 0 8px}
+.intro p{line-height:1.6;color:#4c6357}
+.btn{border:0;border-radius:14px;padding:14px 18px;font-size:1rem;font-weight:850;cursor:pointer;transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.04);transform:translateY(-1px)}
+.primary{background:var(--red);color:white;box-shadow:0 5px 0 #942621}
+.secondary{background:#e8f1e9;color:var(--green)}
+.btn:focus-visible,.option:focus-visible{outline:3px solid #e6a700;outline-offset:3px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.actions .btn{flex:1}
+.hidden{display:none!important}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;font-weight:800}
+.progress{height:9px;background:#e8eee8;border-radius:20px;overflow:hidden;margin:10px 0 24px}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--red),#ef8b3d);transition:width .25s}
+.topic{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--green2);font-weight:900}
+.question{font-size:clamp(1.35rem,4vw,1.8rem);line-height:1.2;margin:10px 0 20px;letter-spacing:-.025em}
+.options{display:grid;gap:10px}
+.option{display:flex;align-items:flex-start;gap:12px;text-align:left;width:100%;padding:14px;border:2px solid #dce6dd;border-radius:15px;background:#fff;color:var(--ink);font:inherit;font-weight:650;cursor:pointer}
+.option .letter{flex:none;width:30px;height:30px;border-radius:10px;background:#e9f2ea;display:grid;place-items:center;font-weight:900;color:var(--green)}
+.option:hover{border-color:#7cac8a;background:#fbfdfb}
+.option.correct{border-color:#27804b;background:#edf8ef}
+.option.wrong{border-color:#d64c43;background:#fff0ef}
+.feedback{margin-top:16px;border-radius:14px;padding:14px;line-height:1.5;background:#f0f6f0;border-left:5px solid var(--green2)}
+.feedback.bad{background:#fff2ef;border-left-color:var(--red)}
+.nextrow{display:flex;justify-content:flex-end;margin-top:18px}
+.scorecircle{width:116px;height:116px;border-radius:50%;display:grid;place-items:center;background:#e8f3e9;border:8px solid #b9d9bf;color:var(--green);margin:4px auto 16px;text-align:center}
+.scorecircle strong{font-size:2rem;display:block;line-height:1}
+.result{text-align:center}
+.result h2{font-size:2rem;margin:10px 0}
+.result p{line-height:1.65;color:#4c6357}
+.stars{font-size:2rem;letter-spacing:.15em;color:#d39b13}
+.tip{background:#fff7e4;border:1px solid #f0d995;border-radius:14px;padding:14px;text-align:left;margin-top:18px;color:#634b15;line-height:1.5}
+footer{text-align:center;padding:0 16px 25px;color:#65766a;font-size:.8rem}
+.small{font-size:.85rem;color:#607367}
+@media(max-width:480px){.actions{flex-direction:column}.actions .btn{width:100%}.panel{border-radius:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="flag"></div>
+<header>
+  <div class="eyebrow">Интерактивная миссия · пожарная безопасность</div>
+  <h1>ЮНЫЙ СПАСАТЕЛЬ<br>МИССИЯ 101</h1>
+  <p>10 ситуаций. Твои решения. Знания, которые помогают сохранять жизнь.</p>
+</header>
+<main class="wrap">
+  <section id="welcome" class="panel intro">
+    <span class="pill">🚒 Готов к вызову?</span>
+    <h2>Проверь свои знания!</h2>
+    <p>Выбирай один ответ в каждой ситуации. После ответа ты увидишь объяснение, а в конце — свой результат и звание юного спасателя.</p>
+    <p class="small">Викторина учебная. В реальной чрезвычайной ситуации следуй указаниям спасателей и звони по номеру экстренной службы, действующему в твоём регионе.</p>
+    <div class="actions"><button class="btn primary" id="start">Начать миссию →</button></div>
+  </section>
+
+  <section id="quiz" class="panel hidden" aria-live="polite">
+    <div class="topline"><span id="counter">ВОПРОС 1 ИЗ 10</span><span class="pill" id="points">⭐ 0 баллов</span></div>
+    <div class="progress"><div id="bar"></div></div>
+    <div class="topic" id="topic"></div>
+    <h2 class="question" id="question"></h2>
+    <div class="options" id="options"></div>
+    <div id="feedback" class="feedback hidden"></div>
+    <div class="nextrow"><button class="btn primary hidden" id="next">Следующий вопрос →</button></div>
+  </section>
+
+  <section id="result" class="panel result hidden" aria-live="polite">
+    <div class="stars" id="stars">★ ★ ★</div>
+    <div class="scorecircle"><div><strong id="finalScore">0/10</strong><span class="small">баллов</span></div></div>
+    <span class="pill">МИССИЯ ЗАВЕРШЕНА</span>
+    <h2 id="rank"></h2>
+    <p id="summary"></p>
+    <div class="tip" id="tip"></div>
+    <div class="actions"><button class="btn primary" id="again">Пройти ещё раз ↻</button><button class="btn secondary" id="print">Распечатать результат</button></div>
+  </section>
+</main>
+<footer>Помни: безопасность начинается со знаний. ❤️‍🔥</footer>
+<script>
+const questions = [
+ {topic:"01 · Обнаружил пожар",q:"Ты заметил дым в школьном коридоре. Что делать?",a:["Спрятаться в ближайшем кабинете","Немедленно предупредить взрослых, выйти безопасным путём и сообщить спасателям","Вернуться за своими вещами"],correct:1,why:"Предупреди окружающих, покинь опасную зону по безопасному пути и сообщи взрослым или экстренной службе. За вещами не возвращайся."},
+ {topic:"02 · Экстренный вызов",q:"Что важно сообщить диспетчеру при вызове спасателей?",a:["Только своё имя","Точный адрес или место, что случилось, есть ли люди в опасности; отвечать на вопросы диспетчера","Сразу завершить звонок после слова «пожар»"],correct:1,why:"Говори спокойно, назови место происшествия и что произошло. Отвечай на вопросы и не отключайся, пока диспетчер не завершит разговор. Используй местный номер экстренной службы."},
+ {topic:"03 · Дым",q:"Коридор заполнен дымом. Как поступить?",a:["Идти туда, где дыма больше","Спрятаться в лифте","Не входить в дым, искать безопасный выход; если путь отрезан — закрыть дверь, сообщить о своём месте и звать на помощь"],correct:2,why:"Дым опасен. Не пользуйся лифтом и не входи в задымлённую зону. Если выйти нельзя, укройся в помещении за закрытой дверью, сообщи спасателям, где находишься, и следуй их указаниям."},
+ {topic:"04 · Одежда загорелась",q:"На человеке загорелась одежда. Какое действие правильное?",a:["Бежать как можно быстрее","Остановиться, лечь и перекатываться, одновременно попросить о помощи","Спрятаться за мебелью"],correct:1,why:"Бег усиливает горение. Нужно остановиться, лечь и перекатываться, закрывая лицо руками. Если рядом взрослый, он может помочь безопасно потушить пламя плотной тканью, не накрывая голову."},
+ {topic:"05 · Электричество",q:"Ты увидел искрящуюся розетку. Что делать?",a:["Не трогать её, отойти и сразу сообщить взрослому","Попробовать починить отвёрткой","Полить водой"],correct:0,why:"Не касайся розетки и проводов, не лей воду. Отойди и предупреди взрослого; при дыме или пожаре покиньте помещение и вызовите помощь."},
+ {topic:"06 · Первая помощь",q:"Человек получил небольшой термический ожог. Что обычно нужно сделать первым?",a:["Нанести масло или крем","Охлаждать ожог прохладной проточной водой около 20 минут и обратиться за помощью взрослого","Приложить лёд прямо к коже"],correct:1,why:"Охлаждай ожог прохладной проточной водой около 20 минут. Не используй лёд, масло и домашние средства. При серьёзном ожоге, ожоге лица, дыхательных путей или большой площади немедленно обращайся за медицинской помощью."},
+ {topic:"07 · Эвакуация",q:"Во время учебной тревоги прозвучал сигнал. Твои действия?",a:["Сохранять спокойствие и следовать указаниям учителя по маршруту эвакуации","Собрать все вещи, даже если это задержит выход","Бежать и толкать остальных"],correct:0,why:"Сохраняй спокойствие, не толкайся и следуй указаниям ответственных взрослых по обозначенному маршруту."},
+ {topic:"08 · Незнакомый предмет",q:"Ты нашёл подозрительный предмет с проводами. Что делать?",a:["Поднять и рассмотреть","Не трогать, отойти и сообщить взрослому или экстренным службам","Перенести его в другое место"],correct:1,why:"Не трогай, не передвигай и не разбирай подозрительный предмет. Отойди на безопасное расстояние и сообщи взрослым или экстренным службам."},
+ {topic:"09 · Помощь пострадавшему",q:"Человек лежит без движения. Как лучше поступить?",a:["Сразу дать ему воды","Убедиться, что место безопасно, позвать взрослого и вызвать экстренную помощь; следовать указаниям диспетчера","Оставить его одного и уйти"],correct:1,why:"Сначала проверь безопасность места. Позови взрослого, вызови экстренную помощь. Если человек не реагирует, следуй инструкциям диспетчера по проверке дыхания и дальнейшим действиям."},
+ {topic:"10 · Безопасность дома",q:"Что лучше всего помогает предотвратить пожар дома?",a:["Оставлять готовящуюся еду без присмотра","Перегружать розетки тройниками","Не оставлять огонь и плиту без присмотра, держать спички вдали от детей и соблюдать правила электробезопасности"],correct:2,why:"Большую роль играет профилактика: не оставляй плиту и открытый огонь без присмотра, не играй со спичками, не перегружай розетки и сообщай взрослым о неисправных приборах."}
+];
+let index=0,score=0,locked=false;
+const $=id=>document.getElementById(id);
+$("start").addEventListener("click",()=>{index=0;score=0;$("welcome").classList.add("hidden");$("result").classList.add("hidden");$("quiz").classList.remove("hidden");renderQuestion();});
+function renderQuestion(){
+ locked=false;const item=questions[index];
+ $("counter").textContent=`ВОПРОС ${index+1} ИЗ ${questions.length}`;
+ $("points").textContent=`⭐ ${score} ${score===1?"балл":score>=2&&score<=4?"балла":"баллов"}`;
+ $("bar").style.width=`${index/questions.length*100}%`;
+ $("topic").textContent=item.topic;$("question").textContent=item.q;
+ $("feedback").className="feedback hidden";$("feedback").textContent="";$("next").classList.add("hidden");
+ $("options").innerHTML="";
+ item.a.forEach((text,i)=>{
+  const b=document.createElement("button");b.className="option";
+  const letter=document.createElement("span");letter.className="letter";letter.textContent=['А','Б','В'][i];
+  const label=document.createElement("span");label.textContent=text;
+  b.append(letter,label);b.addEventListener("click",()=>choose(i));$("options").appendChild(b);
+ });
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function choose(choice){
+ if(locked)return;locked=true;const item=questions[index];const buttons=[...$("options").querySelectorAll("button")];
+ buttons.forEach((b,i)=>{b.disabled=true;if(i===item.correct)b.classList.add("correct");if(i===choice&&i!==item.correct)b.classList.add("wrong");});
+ const ok=choice===item.correct;if(ok)score++;
+ $("points").textContent=`⭐ ${score} баллов`;
+ $("feedback").className="feedback"+(ok?"":" bad");
+ $("feedback").innerHTML=`<strong>${ok?"Верно! Отличная работа.":"Не совсем так — запомни правильное решение."}</strong><br>${item.why}`;
+ $("next").textContent=index===questions.length-1?"Узнать результат →":"Следующий вопрос →";$("next").classList.remove("hidden");
+ $("bar").style.width=`${(index+1)/questions.length*100}%`;
+}
+$("next").addEventListener("click",()=>{if(index<questions.length-1){index++;renderQuestion()}else showResult()});
+function showResult(){
+ $("quiz").classList.add("hidden");$("result").classList.remove("hidden");$("finalScore").textContent=`${score}/10`;
+ let rank,summary,tip,stars;
+ if(score<=3){rank="Начинающий спасатель";summary="Ты сделал первый шаг! Повтори памятки на стенде и попробуй пройти миссию ещё раз.";tip="Твоя задача: запомнить, как безопасно эвакуироваться, кому сообщать об опасности и как вызвать помощь.";stars="★☆☆";}
+ else if(score<=6){rank="Знаток безопасности";summary="Хороший результат! Ты знаешь важные правила, но некоторые ситуации стоит повторить.";tip="Твоя задача: повторить правила поведения при дыме, ожогах и обнаружении опасных предметов.";stars="★★☆";}
+ else if(score<=8){rank="Юный эксперт МЧС";summary="Отличный результат! Ты уверенно ориентируешься во многих ситуациях и умеешь выбирать безопасные действия.";tip="Продолжай учиться и помни: в чрезвычайной ситуации не рискуй собой — следуй указаниям взрослых и спасателей.";stars="★★★";}
+ else {rank="Герой безопасности";summary="Впечатляющий результат! Ты внимательно знаешь правила и умеешь применять их в учебных ситуациях.";tip="Знания особенно ценны, когда ими делятся: расскажи семье и друзьям, как действовать безопасно.";stars="★★★";}
+ $("rank").textContent=rank;$("summary").textContent=summary;$("tip").textContent=tip;$("stars").textContent=stars;
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+$("again").addEventListener("click",()=>{$("result").classList.add("hidden");$("quiz").classList.remove("hidden");index=0;score=0;renderQuestion()});
+$("print").addEventListener("click",()=>window.print());
+</script>
+</body>
+</html>
